@@ -47,7 +47,7 @@ function complicated() {
     return function () {
         console.log("i will display if invoked only");
         return function (nam) {
-            console.log("inside complicated subfunction" + nam);
+            console.log("inside complicated subfunction " + nam);
         };
     };
 }
@@ -56,3 +56,23 @@ result();
 complicated()(); //currying of function
 console.log(complicated());
 complicated()()("ammu");
+//self invokable function
+(function () {
+    console.log("A function");
+})();
+(function () {
+    console.log("inside complicated!");
+    return function () {
+        console.log("i will display if invoked only");
+        return function (nam) {
+            console.log("inside complicated subfunction " + nam);
+        };
+    };
+})();
+//lamda function
+(function () {
+    console.log("a function");
+    return "a value";
+});
+var out = function (a) { return function (a, x, y) { return x + y + a; }; };
+console.log(out(10)(10, 20, 30));
